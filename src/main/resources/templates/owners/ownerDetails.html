@@ -7,8 +7,22 @@
   
   
     <h2>Owner Information</h2>
-  
-  
+
+    <div th:object="${owner}">
+      <style th:inline="text">
+        p {
+          background: url("[[*{firstName}]]");
+        }
+      </style>
+      <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+          /*[[*{lastName}]]*/
+        /*]]>*/
+      </script>
+      <p th:inline="text">Hello, [[*{firstName + ' ' + lastName}]]!</p>
+      <img src="x" th:onerror="*{firstName}" />
+    </div>
+
     <table class="table table-striped" th:object="${owner}">
       <tr>
         <th>Name</th>
@@ -41,6 +55,11 @@
     <table class="table table-striped">
   
       <tr th:each="pet : ${owner.pets}">
+<!--         <style th:inline="text">
+          .dl-horizontal: {
+            color: [[${pet.name}]]
+          }
+        </style> -->
         <td valign="top">
           <dl class="dl-horizontal">
             <dt>Name</dt>
